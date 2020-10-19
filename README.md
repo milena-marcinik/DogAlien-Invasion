@@ -5,5 +5,5 @@ The player takes on the role the role of the dog superhero Kleopatra (my doggy),
 ## Controls
 Right arrow &emsp;-Move right  
 Left arrow &ensp;&ensp;&ensp;&nbsp;-Move left   
-Spacebar &emsp;&emsp;-Fire  
+Spacebar &emsp;&emsp;&nbsp;-Fire  
 
