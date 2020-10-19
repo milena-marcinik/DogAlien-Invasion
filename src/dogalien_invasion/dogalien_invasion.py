@@ -1,12 +1,12 @@
 """Main module."""
 import pygame
-import game_functions
+import src.dogalien_invasion.game_functions as game_functions
 from pygame.sprite import Group
-from settings import Settings
-from game_stats import GameStats
-from button import Button
-from rocket_ship import RocketShip
-from scoreboard import Scoreboard
+from src.dogalien_invasion.settings import Settings
+from src.dogalien_invasion.game_stats import GameStats
+from src.dogalien_invasion.button import Button
+from src.dogalien_invasion.rocket_ship import RocketShip
+from src.dogalien_invasion.scoreboard import Scoreboard
 
 
 def run_game():

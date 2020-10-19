@@ -1,8 +1,8 @@
 import sys
 import pygame
 from time import sleep
-from bullet import Bullet
-from alien import Alien
+from src.dogalien_invasion.bullet import Bullet
+from src.dogalien_invasion.alien import Alien
 
 
 def check_keydown_events(event, ai_settings, screen, rocket_ship, bullets):
