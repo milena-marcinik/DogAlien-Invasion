@@ -1,4 +1,7 @@
 import pygame.font
+from pygame.sprite import Group
+
+from src.dogalien_invasion.empty_ship import EmptyShip
 
 
 class Scoreboard:
@@ -20,6 +23,7 @@ class Scoreboard:
         self.prep_score()
         self.prep_high_score()
         self.prep_level()
+        self.prep_empty_ships()
 
     def prep_score(self):
         """Turn the score into a rendered image."""
@@ -36,6 +40,8 @@ class Scoreboard:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+
+        self.empty_ships.draw(self.screen)
 
     def prep_high_score(self):
         """Turn the high score into a rendered image."""
@@ -57,3 +63,12 @@ class Scoreboard:
         self.level_rect = self.level_image.get_rect()
         self.level_rect.right = self.score_rect.right
         self.level_rect.bottom = self.score_rect.bottom + 20
+
+    def prep_empty_ships(self):
+        """Show how many ships are left."""
+        self.empty_ships = Group()
+        for rocket_ship_number in range(self.stats.rocket_ships_left):
+            empty_ship = EmptyShip(self.ai_settings, self.screen)
+            empty_ship.rect.x = 10 + rocket_ship_number * empty_ship.rect.width
+            empty_ship.rect.y = 10
+            self.empty_ships.add(empty_ship)

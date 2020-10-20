@@ -20,7 +20,7 @@ class Settings:
         # Rocket ship settings
         self.rocket_ship_width = 100
         self.rocket_ship_height = 208
-        self.rocket_ship_limit = 2
+        self.rocket_ship_limit = 3
 
         # Bullet settings
         self.bullet_width = 25
@@ -32,6 +32,10 @@ class Settings:
         self.alien_height = 75
         # fleet_direction of 1 represents right; -1 represents left.
         self.fleet_drop_speed = 20
+
+        # Empty ship settings
+        self.empty_ship_width = 40
+        self.empty_ship_height = 60
 
         # Button settings
         self.button_width = 240

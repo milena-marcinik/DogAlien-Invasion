@@ -1,7 +1,7 @@
 import pygame
 
 
-class RocketShip:
+class RocketShip():
     def __init__(self, screen, ai_settings):
         """Initialize the ship and set its starting position."""
         self.screen = screen

@@ -7,6 +7,7 @@ from src.dogalien_invasion.game_stats import GameStats
 from src.dogalien_invasion.button import Button
 from src.dogalien_invasion.rocket_ship import RocketShip
 from src.dogalien_invasion.scoreboard import Scoreboard
+from src.dogalien_invasion.empty_ship import EmptyShip
 
 
 def run_game():
@@ -29,6 +30,7 @@ def run_game():
 
     # Create an instance to store game statistics.# Create an instance to store game statistics and create a scoreboard
     stats = GameStats(ai_settings)
+    empty_ship = EmptyShip(ai_settings, screen)
     sb = Scoreboard(ai_settings, screen, stats)
 
     # Make the Play button.
@@ -41,9 +43,10 @@ def run_game():
         if stats.game_active:
             rocket_ship.update()
             game_functions.update_bullets(ai_settings, screen, stats, sb, rocket_ship, aliens, bullets)
-            game_functions.update_aliens(ai_settings, stats, screen, rocket_ship, aliens, bullets)
+            game_functions.update_aliens(ai_settings, stats, sb, screen, rocket_ship, aliens, bullets)
 
-        game_functions.update_screen(ai_settings, screen, stats, sb, rocket_ship, aliens, bullets, play_button)
+        game_functions.update_screen(ai_settings, screen, stats, sb, rocket_ship, aliens, bullets, play_button,
+                                     empty_ship)
 
 
 run_game()

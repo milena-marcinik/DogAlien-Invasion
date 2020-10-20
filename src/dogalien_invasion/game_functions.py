@@ -3,6 +3,7 @@ import pygame
 from time import sleep
 from src.dogalien_invasion.bullet import Bullet
 from src.dogalien_invasion.alien import Alien
+from src.dogalien_invasion.empty_ship import EmptyShip
 
 
 def check_keydown_events(event, ai_settings, screen, rocket_ship, bullets):
@@ -39,7 +40,8 @@ def check_events(ai_settings, screen, stats, sb, play_button, rocket_ship, alien
             check_keyup_events(event, rocket_ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(ai_settings, screen, stats, sb, play_button, rocket_ship, aliens, bullets, mouse_x, mouse_y)
+            check_play_button(ai_settings, screen, stats, sb, play_button, rocket_ship, aliens, bullets, mouse_x,
+                              mouse_y)
 
 
 def check_play_button(ai_settings, screen, stats, sb, play_button, rocket_ship, aliens, bullets, mouse_x, mouse_y):
@@ -66,9 +68,10 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, rocket_ship, 
         sb.prep_score()
         sb.prep_high_score()
         sb.prep_level()
+        sb.prep_empty_ships()
 
 
-def update_screen(ai_settings, screen, stats, sb, rocket_ship, aliens, bullets, play_button):
+def update_screen(ai_settings, screen, stats, sb, rocket_ship, aliens, bullets, play_button, empty_ship):
     """Update images on the screen and flip to the new screen."""
     # Redraw the screen during each pass through the loop.
     screen.blit(ai_settings.background, (0, 0))
@@ -146,11 +149,14 @@ def check_bullet_alien_collision(ai_settings, screen, stats, sb, rocket_ship, al
         create_fleet(ai_settings, screen, rocket_ship, aliens)
 
 
-def ship_hit(ai_settings, stats, screen, rocket_ship, aliens, bullets):
+def ship_hit(ai_settings, stats, sb, screen, rocket_ship, aliens, bullets):
     """Respond to ship being hit by alien."""
     if stats.rocket_ships_left > 0:
         # Decrement ships_left.
         stats.rocket_ships_left -= 1
+
+        # Update scoreboard
+        sb.prep_empty_ships()
 
         # Empty the list of aliens and bullets.
         aliens.empty()
@@ -168,16 +174,16 @@ def ship_hit(ai_settings, stats, screen, rocket_ship, aliens, bullets):
         pygame.mouse.set_visible(True)
 
 
-def check_aliens_bottom(ai_settings, stats, screen, rocket_ship, aliens, bullets):
+def check_aliens_bottom(ai_settings, stats, sb, screen, rocket_ship, aliens, bullets):
     """Check if any aliens have reached the bottom of the screen."""
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
             # Treat this the same as if the ship got hit.
-            ship_hit(ai_settings, stats, screen, rocket_ship, aliens, bullets)
+            ship_hit(ai_settings, stats, sb, screen, rocket_ship, aliens, bullets)
 
 
-def update_aliens(ai_settings, stats, screen, rocket_ship, aliens, bullets):
+def update_aliens(ai_settings, stats, sb, screen, rocket_ship, aliens, bullets):
     """
      Check if the fleet is at an edge,
      and then update the postions of all aliens in the fleet.
@@ -187,10 +193,10 @@ def update_aliens(ai_settings, stats, screen, rocket_ship, aliens, bullets):
 
     # Look for alien-ship collisions.
     if pygame.sprite.spritecollideany(rocket_ship, aliens):
-        ship_hit(ai_settings, stats, screen, rocket_ship, aliens, bullets)
+        ship_hit(ai_settings, stats, sb, screen, rocket_ship, aliens, bullets)
 
     # Look for aliens hitting the bottom of the screen.
-    check_aliens_bottom(ai_settings, stats, screen, rocket_ship, aliens, bullets)
+    check_aliens_bottom(ai_settings, stats, sb, screen, rocket_ship, aliens, bullets)
 
 
 def get_number_aliens(ai_settings, alien_width):
