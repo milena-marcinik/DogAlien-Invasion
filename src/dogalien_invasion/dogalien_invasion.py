@@ -36,7 +36,7 @@ def run_game():
 
     # Start the main loop for the game.
     while True:
-        game_functions.check_events(ai_settings, screen, stats, play_button, rocket_ship, aliens, bullets)
+        game_functions.check_events(ai_settings, screen, stats, sb, play_button, rocket_ship, aliens, bullets)
 
         if stats.game_active:
             rocket_ship.update()
