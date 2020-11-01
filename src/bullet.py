@@ -18,9 +18,12 @@ class Bullet(Sprite):
 
         self.images = []
         self.images.extend(
-            [resize(pygame.image.load("images/bullet_001.png")), resize(pygame.image.load("images/bullet_002.png")),
-             resize(pygame.image.load("images/bullet_003.png")), resize(pygame.image.load("images/bullet_004.png")),
-             resize(pygame.image.load("images/bullet_005.png")), resize(pygame.image.load("images/bullet_006.png")),
+            [resize(pygame.image.load("images/bullet_001.png")), resize(pygame.image.load(
+                "images/bullet_002.png")),
+             resize(pygame.image.load("images/bullet_003.png")), resize(pygame.image.load(
+                "images/bullet_004.png")),
+             resize(pygame.image.load("images/bullet_005.png")), resize(pygame.image.load(
+                "images/bullet_006.png")),
              resize(pygame.image.load("images/bullet_007.png"))])
 
         self.index = 0

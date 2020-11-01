@@ -15,8 +15,8 @@ class EmptyShip(Sprite):
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
-        self.rect.top = 20
-        self.rect.left = self.screen_rect.left + 20
+        self.rect.top = 5
+        self.rect.left = self.screen_rect.left + 5
 
     def draw_empty_ship(self):
         """Draw the ship at its current location."""

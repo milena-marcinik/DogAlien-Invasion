@@ -18,8 +18,8 @@ class Button(Sprite):
 
         # create the image that shows when mouse is over the element
         image = pygame.transform.scale(image,
-                                       (int(self.ai_settings.button_width * 0.8),
-                                        int(self.ai_settings.button_height * 0.8)))
+                                       (int(self.ai_settings.button_width * 0.9),
+                                        int(self.ai_settings.button_height * 0.9)))
 
         # add both images and their rects to lists
         self.images = [image, highlighted_image]

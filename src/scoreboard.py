@@ -1,7 +1,7 @@
 import pygame.font
 from pygame.sprite import Group
 
-from src.dogalien_invasion.empty_ship import EmptyShip
+from src.empty_ship import EmptyShip
 
 
 class Scoreboard:
@@ -15,9 +15,9 @@ class Scoreboard:
         self.stats = stats
 
         # Font settings for scoring information.
-        self.text_color = (152, 251, 152)
-        self.font = pygame.font.Font("font/space age.ttf", 45)
-        self.font_hs = pygame.font.Font("font/space age.ttf", 30)
+        self.text_color = (0, 255, 127)
+        self.font = pygame.font.Font("font/space_age.ttf", 35)
+        self.font_hs = pygame.font.Font("font/space_age.ttf", 22)
 
         # Prepare the initial score images.
         self.prep_score()
@@ -29,7 +29,7 @@ class Scoreboard:
         """Turn the score into a rendered image."""
         rounded_score = int(round(self.stats.score, -1))
         score_str = f"{rounded_score:,}"
-        self.score_image = self.font.render(score_str, True, self.text_color, self.ai_settings.background)
+        self.score_image = self.font.render(score_str, True, self.text_color)
 
         # Display the score at the top right of the screen.
         self.score_rect = self.score_image.get_rect()
@@ -47,7 +47,7 @@ class Scoreboard:
         """Turn the high score into a rendered image."""
         high_score = int(round(self.stats.high_score, -1))
         high_score_str = f"HIGH SCORE: {high_score:,}"
-        self.high_score_image = self.font_hs.render(high_score_str, True, self.text_color, self.ai_settings.background)
+        self.high_score_image = self.font_hs.render(high_score_str, True, self.text_color)
 
         # Center the high score at the top of the screen.
         self.high_score_rect = self.high_score_image.get_rect()
@@ -57,7 +57,7 @@ class Scoreboard:
     def prep_level(self):
         """Turn the level into a rendered image."""
         level_str = f"LEVEL: {self.stats.level}"
-        self.level_image = self.font_hs.render(level_str, True, self.text_color, self.ai_settings.background)
+        self.level_image = self.font_hs.render(level_str, True, self.text_color)
 
         # Center the high score at the top of the screen.
         self.level_rect = self.level_image.get_rect()

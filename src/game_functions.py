@@ -1,9 +1,8 @@
 import sys
 import pygame
 from time import sleep
-from src.dogalien_invasion.bullet import Bullet
-from src.dogalien_invasion.alien import Alien
-from src.dogalien_invasion.empty_ship import EmptyShip
+from src.bullet import Bullet
+from src.alien import Alien
 
 
 def check_keydown_events(event, ai_settings, screen, rocket_ship, bullets):
@@ -133,7 +132,8 @@ def check_bullet_alien_collision(ai_settings, screen, stats, sb, rocket_ship, al
 
     if collisions:
         for aliens in collisions.values():
-            stats.score += ai_settings.alien_points * len(aliens)
+            stats.score += ai_settings.alien_points
+            #* len(aliens)
             sb.prep_score()
         check_high_score(stats, sb)
 
@@ -209,7 +209,7 @@ def get_number_aliens(ai_settings, alien_width):
 def get_number_rows(ai_settings, rocket_ship_height, alien_height):
     """Determine the number of rows of aliens that fit on the screen."""
     available_space_y = (ai_settings.display_height - 3 * alien_height - rocket_ship_height)
-    number_rows = int(available_space_y / (2 * alien_height))
+    number_rows = int(available_space_y / (1.5 * alien_height))
     return number_rows
 
 
@@ -219,7 +219,7 @@ def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     alien_width = alien.rect.width
     alien.x = alien_width + 2 * alien_width * alien_number
     alien.rect.x = alien.x
-    alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+    alien.rect.y = alien.rect.height + 1.5 * alien.rect.height * row_number
     aliens.add(alien)
 
 
